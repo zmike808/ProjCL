@@ -16,6 +16,7 @@
 #include <strings.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <sys/uio.h>
 #include <unistd.h>
 #include <sys/types.h>
 
@@ -240,14 +241,14 @@ PLCode *pl_compile_code(PLContext *pl_ctx, const char *path, long modules, cl_in
 	size_t binary_length;
 	clGetProgramInfo(program, CL_PROGRAM_BINARY_SIZES, sizeof(size_t), &binary_length, NULL);
 	
-	unsigned char *binary;
+	u_char *binary;
 	if ((binary = malloc(binary_length)) == NULL) {
 		clReleaseProgram(program);
 		if (outError != NULL)
 			*outError = CL_OUT_OF_HOST_MEMORY;
 		return NULL;
 	}
-	clGetProgramInfo(program, CL_PROGRAM_BINARIES, sizeof(unsigned char *), &binary, NULL);
+	clGetProgramInfo(program, CL_PROGRAM_BINARIES, sizeof(u_char *), &binary, NULL);
 	
 	clReleaseProgram(program);
 	
@@ -278,7 +279,7 @@ cl_int pl_load_code(PLContext *pl_ctx, PLCode *pl_code) {
 	program = clCreateProgramWithBinary(pl_ctx->ctx, 1, 
 										(const cl_device_id *)&pl_ctx->device_id, 
 										(const size_t *)&pl_code->len, 
-										(const unsigned char **)&pl_code->binary, 
+										(const u_char **)&pl_code->binary, 
 										&binary_status, &error);
 	if (error != CL_SUCCESS) {
 		return error;
