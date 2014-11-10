@@ -511,11 +511,9 @@ cl_int pl_run_kernel_inverse_geodesic(cl_kernel inv_kernel, PLContext *pl_ctx, P
 	PLSpheroidInfo info = _pl_get_spheroid_info(pl_ell);
 	
 	size_t xy2VecCount = ck_padding(pl_buf->xy2_count, PL_FLOAT_VECTOR_SIZE) / PL_FLOAT_VECTOR_SIZE;
-	
 	error |= clSetKernelArg(inv_kernel, argc++, sizeof(cl_mem), &pl_buf->xy1_in);
 	error |= clSetKernelArg(inv_kernel, argc++, sizeof(cl_mem), &pl_buf->xy2_in);
 	error |= clSetKernelArg(inv_kernel, argc++, sizeof(cl_mem), &pl_buf->dist_out);
-	error |= clSetKernelArg(inv_kernel, argc++, sizeof(cl_float), &info.major_axis);
 	
 	if (error != CL_SUCCESS) {
 		return error;

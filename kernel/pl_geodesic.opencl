@@ -28,6 +28,38 @@ __kernel void pl_sincos1(
 	sincos_out[i].odd = cosPhi;
 }
 
+__kernel void pl_inverse_geodesic_e(__global float2 *lp1_in, __global float16 *lp2_in, __global float8 *dist_out) 
+{
+  int i = get_global_id(0);
+  int j = get_global_id(1);
+  
+  int j_size = get_global_size(1);
+  
+  float lat1 = radians(lp1_in[i].even);
+  float lng1 = radians(lp1_in[i].odd);
+  
+  float8 lat2 = radians(lp2_in[j].even);
+  float8 lng2 = radians(lp2_in[j].odd);
+
+  float cos_lat1;
+  float sin_lat1 = sincos(lat1, &cos_lat1);
+  
+  float8 cos_lat2;
+  float8 sin_lat2 = sincos(lat2, &cos_lat2);
+  
+  float8 delta_lng = lng2 - lng1;
+  float8 cos_delta_lng;
+  float8 sin_delta_lng = sincos(delta_lng, &cos_delta_lng);
+  
+  dist_out[i*j_size+j] = 6372795.0 * (atan2(
+    sqrt(
+    ((cos_lat2 * sin_delta_lng) * (cos_lat2 * sin_delta_lng)) +
+    ((cos_lat1 * sin_lat2 - sin_lat1 * cos_lat2 * cos_delta_lng) * (cos_lat1 * sin_lat2 - sin_lat1 * cos_lat2 * cos_delta_lng)) 
+    ),
+   (sin_lat1 * sin_lat2) + (cos_lat1 * cos_lat2 * cos_delta_lng)
+   ));
+}
+
 __kernel void pl_inverse_geodesic_s(
 	__global float2 *lp1_in,
 	__global float16 *lp2_in,
