@@ -8,10 +8,6 @@
 #include <projcl/projcl.h>
 #include <projcl/projcl_warp.h>
 
-#ifdef HAVE_PROJ4
-#include <proj_api.h>
-#endif
-
 #define RAD_TO_DEG   57.29577951308232
 #define TEST_POINTS 1000
 #define TOL 1.e-5
@@ -224,89 +220,13 @@ int test_winkel_tripel(PLContext *ctx, PLProjectionBuffer *orig_buf, float *orig
 
 int compare_proj4_inv(float *proj_points, float *orig_points, char *desc1, char *desc2) {
     int failures = 0;
-#ifdef HAVE_PROJ4
-    double points_proj4[2*TEST_POINTS];
-    float orig_points_proj4[2*TEST_POINTS];
-    projPJ pj_out, pj_in;
-    int i;
-    int error;
 
-    for (i=0; i<TEST_POINTS; i++) {
-      points_proj4[2*i] = proj_points[2*i];
-      points_proj4[2*i+1] = proj_points[2*i+1];
-    }
-
-    if ((pj_in = pj_init_plus(desc1)) == NULL) {
-      printf("Failed to init Proj.4 input structure: %s\n", desc1);
-      exit(1);
-    }
-
-    if ((pj_out = pj_init_plus(desc2)) == NULL) {
-      printf("Failed to init Proj.4 output structure: %s\n", desc2);
-      exit(1);
-    }
-
-    error = pj_transform(pj_in, pj_out, TEST_POINTS, 2, points_proj4, points_proj4 + 1, NULL);
-    if (error != 0) {
-      printf("Error projecting: %d\n", error);
-      exit(1);
-    }
-
-    pj_free(pj_in);
-    pj_free(pj_out);
-
-    for (i=0; i<TEST_POINTS; i++) {
-      orig_points_proj4[2*i] = points_proj4[2*i] * RAD_TO_DEG;
-      orig_points_proj4[2*i+1] = points_proj4[2*i+1] * RAD_TO_DEG;
-    }
-
-    failures = compare_points(orig_points_proj4, orig_points, 
-            TEST_POINTS, "...inverse same as Proj.4");
-#endif
     return failures;
 }
 
 int compare_proj4_fwd(float *orig_points, float *proj_points, char *desc1, char *desc2) {
     int failures = 0;
-#ifdef HAVE_PROJ4
-    double points_proj4[2*TEST_POINTS];
-    float proj_points_proj4[2*TEST_POINTS];
-    projPJ pj_out, pj_in;
-    int i;
-    int error;
 
-    for (i=0; i<TEST_POINTS; i++) {
-      points_proj4[2*i] = orig_points[2*i] * DEG_TO_RAD;
-      points_proj4[2*i+1] = orig_points[2*i+1] * DEG_TO_RAD;
-    }
-
-    if ((pj_in = pj_init_plus(desc1)) == NULL) {
-      printf("Failed to init Proj.4 input structure: %s\n", desc1);
-      exit(1);
-    }
-
-    if ((pj_out = pj_init_plus(desc2)) == NULL) {
-      printf("Failed to init Proj.4 output structure: %s\n", desc2);
-      exit(1);
-    }
-
-    error = pj_transform(pj_in, pj_out, TEST_POINTS, 2, points_proj4, points_proj4 + 1, NULL);
-    if (error != 0) {
-      printf("Error projecting: %d\n", error);
-      exit(1);
-    }
-
-    pj_free(pj_in);
-    pj_free(pj_out);
-
-    for (i=0; i<TEST_POINTS; i++) {
-      proj_points_proj4[2*i] = points_proj4[2*i];
-      proj_points_proj4[2*i+1] = points_proj4[2*i+1];
-    }
-
-    failures = compare_points(proj_points_proj4, proj_points, 
-            TEST_POINTS, "...same as Proj.4");
-#endif
     return failures;
 }
 

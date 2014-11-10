@@ -254,7 +254,7 @@ cl_int pl_shift_grid_datum(PLContext *pl_ctx, PLPointGridBuffer *src, PLDatum sr
     if (error != CL_SUCCESS)
         goto cleanup;
     
-    error = pl_run_kernel_transform_cartesian(transform_kernel, pl_ctx, &pl_buf, src_datum, dst_datum);
+//    error = pl_run_kernel_transform_cartesian(transform_kernel, pl_ctx, &pl_buf, src_datum, dst_datum);
     if (error != CL_SUCCESS)
         goto cleanup;
     

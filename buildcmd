@@ -1,0 +1,17 @@
+gcc -c -I/usr/local/cuda/include -L/usr/local/cuda/lib64 -I/home/mzemsky/repos/ProjCL/src/../include *.c
+ar rcs libprojcl.a *.o
+
+---old---
+
+gcc -shared -Wl,-rpath,/usr/local/cuda-6.5/lib64 -Wl,-soname,libprojcl.so -o ./libprojcl.so -L/usr/local/cuda/lib64 -lm -lOpenCL -fPIC -I/home/mzemsky/repos/ProjCL/src/../include *.o
+
+-I/usr/local/cuda/include  -L/usr/local/cuda/lib64 -lOpenCL -lm -fPIC -I/home/mzemsky/repos/ProjCL/src/../include   
+
+/usr/bin/gcc  -fPIC -c -I/usr/local/cuda/include  -L/usr/local/cuda/lib64 
+-lOpenCL -lm -g   
+-shared -Wl,-soname,libprojcl.so -o libprojcl.so 
+CMakeFiles/projcl.dir/projcl_datum.c.o CMakeFiles/projcl.dir/projcl_geodesic.c.o 
+CMakeFiles/projcl.dir/projcl_project.c.o CMakeFiles/projcl.dir/projcl_run.c.o 
+CMakeFiles/projcl.dir/projcl_util.c.o CMakeFiles/projcl.dir/projcl_warp.c.o 
+CMakeFiles/projcl.dir/projcl.c.o /usr/local/cuda-6.5/lib64/libOpenCL.so 
+-Wl,-rpath,/usr/local/cuda-6.5/lib64 

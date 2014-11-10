@@ -119,7 +119,7 @@ cl_int pl_shift_datum(PLContext *pl_ctx, PLDatum src_datum, PLDatum dst_datum, P
     if (geodesic_kernel == NULL || transform_kernel == NULL)
         return CL_INVALID_KERNEL_NAME;
     
-    error = pl_run_kernel_transform_cartesian(transform_kernel, pl_ctx, pl_buf, src_datum, dst_datum);
+    //error = pl_run_kernel_transform_cartesian(transform_kernel, pl_ctx, pl_buf, src_datum, dst_datum);
     if (error != CL_SUCCESS)
         return error;
     
