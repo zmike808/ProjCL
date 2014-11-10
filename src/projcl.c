@@ -130,7 +130,7 @@ PLCode *pl_compile_code(PLContext *pl_ctx, const char *path, long modules, cl_in
     /* First read the header file */
     if (strlen(path) + sizeof(PL_OPENCL_KERNEL_HEADER_FILE) + 1 < sizeof(filename)) {
         pointers[entry_index++] = buffer + buf_used;
-        s//printf(filename, "%s/" PL_OPENCL_KERNEL_HEADER_FILE, path);
+        sprintf(filename, "%s/" PL_OPENCL_KERNEL_HEADER_FILE, path);
         //printf("first fname: %s", filename);
         int fd = open(filename, O_RDONLY);
         if (fd == -1) {
@@ -194,7 +194,7 @@ PLCode *pl_compile_code(PLContext *pl_ctx, const char *path, long modules, cl_in
           
             if (strlen(path) + strlen(name) + 2 < sizeof(filename)) {
 				pointers[entry_index++] = buffer + buf_used;
-				s//printf(filename, "%s/%s", path, name);
+				sprintf(filename, "%s/%s", path, name);
 				int fd = open(filename, O_RDONLY);
 				if (fd == -1) {
 					continue;
