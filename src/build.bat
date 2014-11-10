@@ -1,0 +1,1 @@
+gcc -g -shared -L../lib -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" -I../include -lOpenCL64 -w -o ./ProjCL.dll projcl.c projcl_datum.c projcl_geodesic.c projcl_project.c projcl_run.c projcl_spheroid.c projcl_util.c projcl_warp.c
