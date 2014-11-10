@@ -3,7 +3,7 @@
 #include <math.h>
 #include <string.h>
 
-#include <OpenCL/OpenCL.h>
+#include <CL/cl.h>
 #include <sys/time.h>
 #include <projcl/projcl.h>
 #include <projcl/projcl_warp.h>

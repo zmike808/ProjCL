@@ -13,7 +13,6 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <Accelerate/Accelerate.h>
 
 #define RAD_TO_DEG	57.29577951308232
 #define DEG_TO_RAD	.0174532925199432958
@@ -698,7 +697,7 @@ cl_int pl_run_kernel_geodesic_to_cartesian(cl_kernel g2c_kernel, PLContext *pl_c
  * datum to the inverse transformation matrix of the destination matrix, and
  * then just do a single matrix multiplication on each point instead of two
  * in order to transform it.
- */
+ *
 cl_int pl_run_kernel_transform_cartesian(cl_kernel transform_kernel, PLContext *pl_ctx, PLDatumShiftBuffer *pl_buf,
                                          PLDatum src_datum, PLDatum dst_datum) {
     float Rx1, Ry1, Rz1, M1, Dx1, Dy1, Dz1;
@@ -727,7 +726,7 @@ cl_int pl_run_kernel_transform_cartesian(cl_kernel transform_kernel, PLContext *
     struct pl_matrix matrix1 = pl_affine_transform_make(Rx1, Ry1, Rz1, M1, Dx1, Dy1, Dz1);
     struct pl_matrix matrix2 = pl_affine_transform_make(Rx2, Ry2, Rz2, M2, Dx2, Dy2, Dz2);
     
-    /* Invert the destination matrix */
+    /* Invert the destination matrix 
     __CLPK_integer n = 4;
     __CLPK_integer info;
     
@@ -751,13 +750,13 @@ cl_int pl_run_kernel_transform_cartesian(cl_kernel transform_kernel, PLContext *
     __CLPK_real beta = 0.f;
     __CLPK_real result_matrix[4][4];
     
-    /* Multiply the source matrix with the inverse destination matrix */
+    /* Multiply the source matrix with the inverse destination matrix 
     SGEMM(&no_transpose, &no_transpose, &n, &n, &n, &alpha,
           &matrix2.elements[0][0], &n,
           &matrix1.elements[0][0], &n,
           &beta, &result_matrix[0][0], &n);
     
-    /* transpose the result */
+    /* transpose the result 
     float tmatrix[4][4];
     int i, j;
     for (i=0; i<4; i++) {
@@ -779,7 +778,7 @@ cl_int pl_run_kernel_transform_cartesian(cl_kernel transform_kernel, PLContext *
         return error;
     
     return error;
-}
+} */
 
 cl_int pl_run_kernel_cartesian_to_geodesic(cl_kernel c2g_kernel, PLContext *pl_ctx, PLDatumShiftBuffer *pl_buf,
                                            float *xy_out, PLSpheroid pl_ell) {
