@@ -19,17 +19,17 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-#define PL_DEBUG 0
+#define PL_DEBUG 1
 
 #define PL_OPENCL_FILE_EXTENSION ".opencl"
 #define PL_OPENCL_KERNEL_HEADER_FILE "peel.opencl"
 #define PL_OPENCL_KERNEL_FILE_PREFIX "pl_"
 
-PLContext *pl_context_init(cl_device_type type, cl_int *outError) {
+PLContext *pl_context_init(cl_platform_id npid, cl_device_type type, cl_int *outError) {
 	cl_int error;
 	cl_device_id device_id;
 	
-	error = clGetDeviceIDs(NULL, type, 1, &device_id, NULL);
+	error = clGetDeviceIDs(npid, type, 1, &device_id, NULL);
 	if (error != CL_SUCCESS) {
 		if (outError != NULL)
 			*outError = error;

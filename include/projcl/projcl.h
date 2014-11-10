@@ -11,7 +11,7 @@
 
 #import "projcl_types.h"
 
-PLContext *pl_context_init(cl_device_type type, cl_int *outError);
+PLContext *pl_context_init(cl_platform_id npid, cl_device_type type, cl_int *outError);
 void pl_context_free(PLContext *pl_ctx);
 
 PLCode *pl_compile_code(PLContext *pl_ctx, const char *path, long modules, cl_int *outError);
