@@ -144,7 +144,7 @@ PLCode *pl_compile_code(PLContext *pl_ctx, const char *path, long modules, cl_in
 			break;
 		}
 		
-		size_t len = entry->d_namlen;
+		size_t len = entry->d_reclen;
 		const char *name = entry->d_name;
         
 		if (len > sizeof(PL_OPENCL_FILE_EXTENSION)-1 
