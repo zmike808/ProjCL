@@ -9,3 +9,5 @@ Testing
 
 test/projcl_test
 obj/
+*.dll
+lib/
