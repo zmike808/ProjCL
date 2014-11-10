@@ -6,10 +6,13 @@
  *  Copyright 2011 __MyCompanyName__. All rights reserved.
  *
  */
+#pragma once
 
-#import <CL/cl.h>
+#include <CL/cl.h>
 
-#import "projcl_types.h"
+#include "projcl_types.h"
+
+
 
 PLContext *pl_context_init(cl_device_type type, cl_int *outError);
 void pl_context_free(PLContext *pl_ctx);
@@ -20,7 +23,7 @@ void pl_release_code(PLCode *pl_code);
 cl_int pl_load_code(PLContext *pl_ctx, PLCode *pl_code);
 void pl_unload_code(PLContext *pl_ctx);
 
-
+cl_int oclGetPlatformID(cl_platform_id* clSelectedPlatformID);
 
 
 PLDatumShiftBuffer *pl_load_datum_shift_data(PLContext *pl_ctx, PLSpheroid src_spheroid, 

@@ -1,4 +1,4 @@
-
+#pragma once
 typedef enum PLImageFilter {
     PL_IMAGE_FILTER_NEAREST_NEIGHBOR,
     PL_IMAGE_FILTER_BILINEAR,

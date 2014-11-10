@@ -6,7 +6,7 @@
  *  Copyright 2011 __MyCompanyName__. All rights reserved.
  *
  */
-
+#pragma once
 #define PL_FLOAT_VECTOR_SIZE 8
 #define ck_padding(n, size) (((n)+(size)-1)/(size)*(size))
 

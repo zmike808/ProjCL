@@ -8,42 +8,125 @@
  */
 
 
-#import <projcl/projcl.h>
+#include <projcl/projcl.h>
 #include <projcl/projcl_warp.h>
 
-#include <dirent.h>
+#include "dirent.h"
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include <sys/uio.h>
-#include <unistd.h>
 #include <sys/types.h>
 
-#define PL_DEBUG 0
+#define PL_DEBUG 1
 
 #define PL_OPENCL_FILE_EXTENSION ".opencl"
 #define PL_OPENCL_KERNEL_HEADER_FILE "peel.opencl"
 #define PL_OPENCL_KERNEL_FILE_PREFIX "pl_"
 
+//---------------------------------------------------------
+
+cl_int oclGetPlatformID(cl_platform_id* clSelectedPlatformID)
+
+//---------------------------------------------------------
+
+{
+
+  char chBuffer[1024];
+
+  cl_uint num_platforms; 
+
+  cl_platform_id* clPlatformIDs;
+
+  cl_int ciErrNum;
+
+  *clSelectedPlatformID = NULL;
+
+
+
+  // Get OpenCL platform count
+
+  ciErrNum = clGetPlatformIDs (0, NULL, &num_platforms);
+
+  if (num_platforms <= 0) { return CL_INVALID_PLATFORM; }
+
+
+
+  // alloc space for IDs
+
+  clPlatformIDs = (cl_platform_id*)malloc(num_platforms * sizeof(cl_platform_id));
+
+  if (! clPlatformIDs) { return CL_INVALID_PLATFORM; }
+
+
+
+  // search for NVIDIA platform
+
+  ciErrNum = clGetPlatformIDs (num_platforms, clPlatformIDs, NULL);
+  cl_uint i = 0;
+  for(;i < num_platforms; ++i) {
+
+    ciErrNum = clGetPlatformInfo (clPlatformIDs[i], CL_PLATFORM_NAME, 1024, &chBuffer, NULL);
+
+    if (ciErrNum == CL_SUCCESS) {
+
+      if (strstr(chBuffer, "NVIDIA") != NULL) {
+
+        *clSelectedPlatformID = clPlatformIDs[i];
+
+        break;
+
+      }
+
+    }
+
+  }
+
+  free(clPlatformIDs);
+
+
+
+  if (NULL == *clSelectedPlatformID) { return CL_INVALID_PLATFORM; }
+
+
+
+  return CL_SUCCESS;
+
+}
+
 PLContext *pl_context_init(cl_device_type type, cl_int *outError) {
-	cl_int error;
+  printf("1\n");
+  printf("1\n");
+	cl_uint platforms_n = 0;
+  printf("1\n");
+  cl_platform_id npid;
+  oclGetPlatformID(npid);
+  printf("1\n");
+	printf("=== %d OpenCL platform(s) found: ===\n", platforms_n);
+  printf("1\n");
+  printf("1\n");
+	cl_uint devices_n = 0;  
+  
+	// CL_CHECK(clGetDeviceIDs(NULL, CL_DEVICE_TYPE_ALL, 100, devices, &devices_n));
+	//(clGetDeviceIDs(npid, CL_DEVICE_TYPE_GPU, 1, &device_id, &devices_n));
 	cl_device_id device_id;
-	
-	error = clGetDeviceIDs(NULL, type, 1, &device_id, NULL);
+
+  cl_int error;
+	error = clGetDeviceIDs(npid, CL_DEVICE_TYPE_GPU, 1, &device_id, devices_n);
+  printf("=== %d OpenCL devices(s) found: ===\n", devices_n);
+
 	if (error != CL_SUCCESS) {
 		if (outError != NULL)
 			*outError = error;
 		return NULL;
 	}
-    
 	cl_context ctx = clCreateContext(0, 1, &device_id, NULL, NULL, &error);
 	if (error != CL_SUCCESS) {
 		if (outError != NULL)
 			*outError = error;
 		return NULL;
 	}
-	
+	printf("hardmode\n");
 	cl_command_queue queue = clCreateCommandQueue(ctx, device_id,
 												  0, &error);
 	if (error != CL_SUCCESS) {
@@ -89,6 +172,7 @@ PLContext *pl_context_init(cl_device_type type, cl_int *outError) {
 	pl_ctx->ctx = ctx;
 	pl_ctx->queue = queue;
 	pl_ctx->device_id = device_id;
+  printf("hardmode\n");
 	return pl_ctx;
 }
 
@@ -241,14 +325,14 @@ PLCode *pl_compile_code(PLContext *pl_ctx, const char *path, long modules, cl_in
 	size_t binary_length;
 	clGetProgramInfo(program, CL_PROGRAM_BINARY_SIZES, sizeof(size_t), &binary_length, NULL);
 	
-	u_char *binary;
+	unsigned char *binary;
 	if ((binary = malloc(binary_length)) == NULL) {
 		clReleaseProgram(program);
 		if (outError != NULL)
 			*outError = CL_OUT_OF_HOST_MEMORY;
 		return NULL;
 	}
-	clGetProgramInfo(program, CL_PROGRAM_BINARIES, sizeof(u_char *), &binary, NULL);
+	clGetProgramInfo(program, CL_PROGRAM_BINARIES, sizeof(unsigned char *), &binary, NULL);
 	
 	clReleaseProgram(program);
 	
@@ -279,7 +363,7 @@ cl_int pl_load_code(PLContext *pl_ctx, PLCode *pl_code) {
 	program = clCreateProgramWithBinary(pl_ctx->ctx, 1, 
 										(const cl_device_id *)&pl_ctx->device_id, 
 										(const size_t *)&pl_code->len, 
-										(const u_char **)&pl_code->binary, 
+										(const unsigned char **)&pl_code->binary, 
 										&binary_status, &error);
 	if (error != CL_SUCCESS) {
 		return error;

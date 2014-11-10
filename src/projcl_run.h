@@ -7,8 +7,10 @@
  *
  */
 
-#import <CL/cl.h>
-#import <projcl/projcl_types.h>
+#pragma once
+
+#include <CL/cl.h>
+#include <projcl/projcl_types.h>
 
 cl_int pl_read_buffer(cl_command_queue queue, cl_mem xy_out_buf, float *xy_out, size_t out_count);
 

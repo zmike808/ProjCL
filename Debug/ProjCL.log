@@ -1,0 +1,120 @@
+﻿Build started 11/10/2014 3:40:59 AM.
+     1>Project "C:\ProjCL\ProjCL.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\ProjCL\include /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt src\projcl.c src\projcl_datum.c src\projcl_geodesic.c src\projcl_project.c src\projcl_run.c src\projcl_spheroid.c src\projcl_util.c src\projcl_warp.c
+         projcl_warp.c
+         projcl_util.c
+     1>src\projcl_util.c(20): warning C4018: '<' : signed/unsigned mismatch
+     1>src\projcl_util.c(34): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>src\projcl_util.c(36): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>src\projcl_util.c(43): warning C4018: '<' : signed/unsigned mismatch
+     1>src\projcl_util.c(46): warning C4018: '<' : signed/unsigned mismatch
+         projcl_spheroid.c
+     1>src\projcl_spheroid.c(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(48): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(49): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(50): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(53): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(54): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(55): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(56): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_spheroid.c(57): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         projcl_run.c
+     1>src\projcl_run.c(100): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>src\projcl_run.c(135): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(139): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(146): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(151): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(153): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(154): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(156): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(157): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(158): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(210): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(211): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(212): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(213): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(220): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(221): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(226): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(229): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(230): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(239): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(240): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(247): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(248): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(248): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(277): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(278): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(312): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(313): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(317): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(320): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(359): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(360): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(361): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(362): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(369): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(370): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(379): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(380): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(381): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(388): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(389): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(389): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(390): warning C4244: '/=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(392): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(393): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(393): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(461): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(462): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(464): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(488): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(489): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_run.c(553): warning C4018: '<' : signed/unsigned mismatch
+     1>src\projcl_run.c(554): warning C4018: '<' : signed/unsigned mismatch
+         projcl_project.c
+     1>src\projcl_project.c(177): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_project.c(178): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_project.c(179): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_project.c(199): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_project.c(200): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>src\projcl_project.c(201): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+         projcl_geodesic.c
+         projcl_datum.c
+         projcl.c
+     1>src\projcl.c(103): warning C4047: 'function' : 'cl_platform_id *' differs in levels of indirection from 'cl_platform_id'
+     1>src\projcl.c(103): warning C4024: 'oclGetPlatformID' : different types for formal and actual parameter 1
+     1>src\projcl.c(115): warning C4047: 'function' : 'cl_uint *' differs in levels of indirection from 'cl_uint'
+     1>src\projcl.c(115): warning C4024: 'clGetDeviceIDs' : different types for formal and actual parameter 5
+     1>src\projcl.c(210): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>src\projcl.c(211): warning C4013: 'open' undefined; assuming extern returning int
+     1>src\projcl.c(215): warning C4013: 'read' undefined; assuming extern returning int
+     1>src\projcl.c(219): warning C4013: 'close' undefined; assuming extern returning int
+     1>src\projcl.c(235): warning C4013: 'strncasecmp' undefined; assuming extern returning int
+     1>src\projcl.c(236): warning C4013: 'strcasecmp' undefined; assuming extern returning int
+     1>src\projcl.c(270): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>src\projcl.c(404): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+     1>c:\projcl\src\projcl.c(103): warning C4700: uninitialized local variable 'npid' used
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Concierge\opencl\Debug\ProjCL.lib" /NOLOGO Debug\projcl.obj
+         Debug\projcl_datum.obj
+         Debug\projcl_geodesic.obj
+         Debug\projcl_project.obj
+         Debug\projcl_run.obj
+         Debug\projcl_spheroid.obj
+         Debug\projcl_util.obj
+         Debug\projcl_warp.obj
+         ProjCL.vcxproj -> C:\Concierge\opencl\Debug\ProjCL.lib
+     1>Done Building Project "C:\ProjCL\ProjCL.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.35

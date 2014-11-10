@@ -8,7 +8,7 @@
 
 #include "projcl_util.h"
 #include "projcl_spheroid.h"
-#include <strings.h>
+#include <string.h>
 #include <stdio.h>
 
 cl_kernel _pl_find_kernel(PLContext *pl_ctx, const char *requested_name) {

@@ -1,9 +1,9 @@
-gcc -c -I/usr/local/cuda/include -L/usr/local/cuda/lib64 -I/home/mzemsky/repos/ProjCL/src/../include *.c
+gcc -g -fPIC -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" -L"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\lib\x64" -IC:\ProjCL\include\ -Wl,-rpath,"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\lib\x64" -Wl,-soname,libprojcl.dll *.c -o libprojcl.dll -lm -lOpenCL
 ar rcs libprojcl.a *.o
 
 ---old---
 
-gcc -shared -Wl,-rpath,/usr/local/cuda-6.5/lib64 -Wl,-soname,libprojcl.so -o ./libprojcl.so -L/usr/local/cuda/lib64 -lm -lOpenCL -fPIC -I/home/mzemsky/repos/ProjCL/src/../include *.o
+gcc -shared -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" -Wl,-rpath,"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\lib\x64" -Wl,-soname,libprojcl.so -o ./libprojcl.so -L"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\lib\x64" -lm -lOpenCL -fPIC -I./include *.o
 
 -I/usr/local/cuda/include  -L/usr/local/cuda/lib64 -lOpenCL -lm -fPIC -I/home/mzemsky/repos/ProjCL/src/../include   
 
